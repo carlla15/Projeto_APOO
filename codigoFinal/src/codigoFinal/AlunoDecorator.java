@@ -4,7 +4,12 @@ public abstract class AlunoDecorator extends Aluno {
     protected Aluno aluno;
 
     public AlunoDecorator(Aluno aluno) {
-        super(new Aluno.Builder().comCpf(aluno.getCpf()).comNome(aluno.getNome()).comEndereco(aluno.getEndereco()).comIdade(aluno.getIdade()).comMensalidade(aluno.mensalidade));
+        super(new Aluno.Builder()
+            .cpf(aluno.getCpf())
+            .nome(aluno.getNome())
+            .endereco(aluno.getEndereco())
+            .idade(aluno.getIdade())
+            .mensalidade(aluno.getMensalidade()));
         this.aluno = aluno;
     }
 
@@ -13,4 +18,3 @@ public abstract class AlunoDecorator extends Aluno {
         return aluno.getMensalidade();
     }
 }
-

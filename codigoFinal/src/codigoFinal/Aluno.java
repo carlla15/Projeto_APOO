@@ -46,34 +46,33 @@ public class Aluno extends ClasseBase {
         private String endereco;
         private int idade;
         private Mensalidade mensalidade;
-
-        public Builder comCpf(String cpf) {
+    
+        public Builder cpf(String cpf) {
             this.cpf = cpf;
             return this;
         }
-
-        public Builder comNome(String nome) {
+    
+        public Builder nome(String nome) {
             this.nome = nome;
             return this;
         }
-
-        public Builder comEndereco(String endereco) {
+    
+        public Builder endereco(String endereco) {
             this.endereco = endereco;
             return this;
         }
-
-        public Builder comIdade(int idade) {
+    
+        public Builder idade(int idade) {
             this.idade = idade;
             return this;
         }
-
-        public Builder comMensalidade(Mensalidade mensalidade) {
+    
+        public Builder mensalidade(Mensalidade mensalidade) {
             this.mensalidade = mensalidade;
             return this;
         }
-
+    
         public Aluno build() {
             return new Aluno(this);
-        }
-    }
-}
+            }}    }
+    

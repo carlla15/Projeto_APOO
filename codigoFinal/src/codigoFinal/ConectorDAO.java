@@ -14,6 +14,6 @@ public class ConectorDAO {
     }
 
     public DAO<Aluno> criarAlunoDAO() {
-        return new AlunoDAO();
+        //return new AlunoDAO();
     }
 }

@@ -1,15 +1,14 @@
 package codigoFinal;
 
-public class DescontoAcademico extends AlunoDecorator {
-    private double desconto;
+public class DescontoAcademico implements Mensalidade {
 
-    public DescontoAcademico(Aluno aluno, double desconto) {
-        super(aluno);
-        this.desconto = desconto;
+    private Mensalidade base;
+    public DescontoAcademico(Mensalidade base) {
+        this.base=base;
+
     }
-
     @Override
-    public double getMensalidade() {
-        return super.getMensalidade() * (1 - desconto);
+    public double getValor() {
+        return base.getValor();
     }
 }

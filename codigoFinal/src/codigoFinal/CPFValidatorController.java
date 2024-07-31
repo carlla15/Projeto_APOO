@@ -12,8 +12,8 @@ public class CPFValidatorController {
         }
         return instancia;
     }
-
     public boolean validarCPF(String cpf) {
         return CPFValidatorUtil.validarCPF(cpf);
     }
+
 }

@@ -4,17 +4,12 @@ public abstract class AlunoDecorator extends Aluno {
     protected Aluno aluno;
 
     public AlunoDecorator(Aluno aluno) {
-        super(new Aluno.Builder()
-            .cpf(aluno.getCpf())
-            .nome(aluno.getNome())
-            .endereco(aluno.getEndereco())
-            .idade(aluno.getIdade())
-            .mensalidade(aluno.getMensalidade()));
+        super(aluno);
         this.aluno = aluno;
     }
 
     @Override
-    public double getMensalidade() {
-        return aluno.getMensalidade();
+    public double getValor() {
+        return aluno.getValor();
     }
 }

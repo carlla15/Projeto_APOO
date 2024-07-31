@@ -20,7 +20,6 @@ public class GenericDAO<T extends ClasseBase> implements DAO<T> {
         }
         return null;
     }
-
     @Override
     public void atualizar(T t) {
         for (int i = 0; i < lista.size(); i++) {
@@ -30,7 +29,6 @@ public class GenericDAO<T extends ClasseBase> implements DAO<T> {
             }
         }
     }
-
     @Override
     public void remover(String id) {
         lista.removeIf(t -> t.getId().equals(id));

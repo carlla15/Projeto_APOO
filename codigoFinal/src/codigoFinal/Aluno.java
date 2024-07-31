@@ -1,18 +1,16 @@
 package codigoFinal;
 
-public class Aluno extends ClasseBase {
+public class Aluno extends ClasseBase implements Mensalidade {
     private String cpf;
     private String nome;
     private String endereco;
     private int idade;
-    private Mensalidade mensalidade;
 
     private Aluno(Builder builder) {
         this.cpf = builder.cpf;
         this.nome = builder.nome;
         this.endereco = builder.endereco;
         this.idade = builder.idade;
-        this.mensalidade = builder.mensalidade;
     }
 
     public String getCpf() {
@@ -36,8 +34,8 @@ public class Aluno extends ClasseBase {
         return idade;
     }
 
-    public double getMensalidade() {
-        return mensalidade.getValor();
+    public double getValor() {
+        return 200;
     }
 
     public static class Builder {
@@ -45,7 +43,6 @@ public class Aluno extends ClasseBase {
         private String nome;
         private String endereco;
         private int idade;
-        private Mensalidade mensalidade;
     
         public Builder cpf(String cpf) {
             this.cpf = cpf;
@@ -64,11 +61,6 @@ public class Aluno extends ClasseBase {
     
         public Builder idade(int idade) {
             this.idade = idade;
-            return this;
-        }
-    
-        public Builder mensalidade(Mensalidade mensalidade) {
-            this.mensalidade = mensalidade;
             return this;
         }
     

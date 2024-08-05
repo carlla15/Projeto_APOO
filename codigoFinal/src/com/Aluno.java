@@ -1,4 +1,7 @@
-package codigoFinal;
+package com;
+
+import com.ClasseBase;
+import com.Mensalidade;
 
 public class Aluno extends ClasseBase implements Mensalidade {
     private String cpf;

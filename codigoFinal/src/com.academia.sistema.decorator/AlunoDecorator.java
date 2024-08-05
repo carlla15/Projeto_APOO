@@ -1,4 +1,6 @@
-package codigoFinal;
+package com.academia.sistema.decorator;
+
+import com.academia.Aluno;
 
 public abstract class AlunoDecorator extends Aluno {
     protected Aluno aluno;

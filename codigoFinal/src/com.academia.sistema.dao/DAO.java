@@ -1,4 +1,4 @@
-package codigoFinal;
+package com.academia.sistema.dao;
 
 import java.util.List;
 

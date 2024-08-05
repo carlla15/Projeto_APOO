@@ -1,4 +1,4 @@
-package codigoFinal;
+package com;
 
 public interface Mensalidade {
     double getValor();

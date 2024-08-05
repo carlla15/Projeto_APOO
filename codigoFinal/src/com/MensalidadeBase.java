@@ -1,4 +1,4 @@
-package codigoFinal;
+package com;
 
 public class MensalidadeBase implements Mensalidade {
     private double valor;

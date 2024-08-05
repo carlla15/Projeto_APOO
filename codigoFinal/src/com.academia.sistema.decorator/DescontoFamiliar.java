@@ -1,4 +1,6 @@
-package codigoFinal;
+package com.academia.sistema.decorator;
+
+import com.Mensalidade;
 
 public class DescontoFamiliar implements Mensalidade {
     private Mensalidade base;

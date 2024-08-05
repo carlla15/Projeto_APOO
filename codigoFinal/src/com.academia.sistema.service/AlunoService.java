@@ -2,6 +2,8 @@ package codigoFinal;
 
 import java.util.List;
 
+import com.academia.Aluno;
+
 public class AlunoService {
     private DAO<Aluno> alunoDAO = ConectorDAO.getInstancia().criarAlunoDAO();
 

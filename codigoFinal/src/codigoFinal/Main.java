@@ -1,5 +1,9 @@
 package codigoFinal;
 
+import com.Mensalidade;
+import com.academia.Aluno;
+import com.academia.sistema.decorator.DescontoAcademico;
+
 public class Main {
 
    public static void main(String[] args) {

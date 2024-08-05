@@ -1,4 +1,7 @@
-package codigoFinal;
+package com.academia.sistema.dao;
+
+import com.academia.Aluno;
+import com.academia.sistema.dao.DAO;
 
 public class ConectorDAO {
 

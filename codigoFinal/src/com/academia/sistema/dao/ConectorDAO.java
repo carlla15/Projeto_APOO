@@ -1,7 +1,6 @@
 package com.academia.sistema.dao;
 
-import com.academia.Aluno;
-import com.academia.sistema.dao.DAO;
+import com.academia.sistema.model.Aluno;
 
 public class ConectorDAO {
 
@@ -17,6 +16,7 @@ public class ConectorDAO {
     }
 
     public DAO<Aluno> criarAlunoDAO() {
-        //return new AlunoDAO();
+    	return new GenericDAO<>();
+
     }
 }

@@ -1,10 +1,9 @@
 package com.academia.sistema.dao;
 
+import com.academia.sistema.model.ClasseBase;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.ClasseBase;
-import com.academia.sistema.dao.DAO;
 
 public class GenericDAO<T extends ClasseBase> implements DAO<T> {
     private List<T> lista = new ArrayList<>();

@@ -1,4 +1,4 @@
-package codigoFinal;
+package com.academia.sistema.util;
 
 import br.com.caelum.stella.validation.CPFValidator;
 import br.com.caelum.stella.validation.InvalidStateException;

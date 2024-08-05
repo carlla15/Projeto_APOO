@@ -1,10 +1,12 @@
-package codigoFinal;
+package com.academia.sistema.service;
 
 import java.util.List;
 
-import com.academia.Aluno;
+import com.academia.sistema.model.*;
+import com.academia.sistema.dao.*;
+import com.academia.sistema.util.*;
 
-public class AlunoService {
+public class AlunoService { 
     private DAO<Aluno> alunoDAO = ConectorDAO.getInstancia().criarAlunoDAO();
 
     public void adicionarAluno(Aluno aluno) {

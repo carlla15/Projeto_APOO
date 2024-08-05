@@ -1,7 +1,6 @@
-package codigoFinal;
+package main;
 
-import com.Mensalidade;
-import com.academia.Aluno;
+import com.academia.sistema.model.*;
 import com.academia.sistema.decorator.DescontoAcademico;
 
 public class Main {

@@ -1,4 +1,4 @@
-package codigoFinal;
+package com.academia.sistema.util;
 
 public class CPFValidatorController {
 

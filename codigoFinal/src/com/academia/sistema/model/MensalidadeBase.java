@@ -1,4 +1,5 @@
-package com;
+package com.academia.sistema.model;
+
 
 public class MensalidadeBase implements Mensalidade {
     private double valor;

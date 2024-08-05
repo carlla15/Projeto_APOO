@@ -1,6 +1,6 @@
 package com.academia.sistema.decorator;
 
-import com.Mensalidade;
+import com.academia.sistema.model.*;
 
 public class DescontoFamiliar implements Mensalidade {
     private Mensalidade base;

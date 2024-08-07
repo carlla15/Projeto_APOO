@@ -9,6 +9,8 @@ import com.academia.sistema.decorator.DescontoParceira;
 
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 public class AcademiaFachada {
     private AlunoService alunoService;
 
@@ -53,31 +55,34 @@ public class AcademiaFachada {
     }
 
    
-    public double aplicarDescontoAcademico(String cpf) {
+   public double aplicarDescontoAcademico(String cpf) {
         Aluno aluno = alunoService.buscarAluno(cpf);
-        if (aluno != null) {
-            DescontoAcademico desconto = new DescontoAcademico(aluno);
-            return desconto.getValor();
-        }
-        return 0;
-    }
+        if (aluno == null) {
+        	throw new RuntimeException("");
 
-    public double aplicarDescontoFamiliar(String cpf) {
-        Aluno aluno = alunoService.buscarAluno(cpf);
-        if (aluno != null) {
+        }
+        DescontoAcademico desconto = new DescontoAcademico(aluno);
+        return desconto.getValor();
+        
+            }
+
+   public double aplicarDescontoFamiliar(String cpf) {
+       Aluno aluno = alunoService.buscarAluno(cpf);
+     if (aluno != null) {
             DescontoFamiliar desconto = new DescontoFamiliar(aluno);
-            return desconto.getValor();
+           return desconto.getValor();
         }
-        return 0;
+	return 0;
+     
     }
-
    
-    public double aplicarDescontoParceira(String cpf) {
-        Aluno aluno = alunoService.buscarAluno(cpf);
+   public double aplicarDescontoParceria(String cpf) {
+       Aluno aluno = alunoService.buscarAluno(cpf);
         if (aluno != null) {
             DescontoParceira desconto = new DescontoParceira(aluno);
             return desconto.getValor();
         }
-        return 0;
+		return 0;
+        
     }
 }

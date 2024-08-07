@@ -19,6 +19,7 @@
   <dependencies>
 	  
 <!-- https://mvnrepository.com/artifact/br.com.caelum.stella/caelum-stella-core -->
+
 <dependency>
     <groupId>br.com.caelum.stella</groupId>
     <artifactId>caelum-stella-core</artifactId>
@@ -26,4 +27,5 @@
 </dependency>
 
   </dependencies>
+  
 </project>

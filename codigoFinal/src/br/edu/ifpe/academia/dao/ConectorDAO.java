@@ -1,6 +1,6 @@
-package com.academia.sistema.dao;
+package br.edu.ifpe.academia.dao;
 
-import com.academia.sistema.model.Aluno;
+import br.edu.ifpe.academia.model.Aluno;
 
 public class ConectorDAO {
     private static ConectorDAO instancia;

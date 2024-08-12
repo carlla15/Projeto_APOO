@@ -1,6 +1,6 @@
-package com.academia.sistema.decorator;
+package br.edu.ifpe.academia.decorator;
 
-import com.academia.sistema.model.*;
+import br.edu.ifpe.academia.model.*;
 
 public class DescontoFamiliar implements Mensalidade {
     private Mensalidade base;
@@ -9,6 +9,6 @@ public class DescontoFamiliar implements Mensalidade {
         this.base = base;
     }
   public double getValor(){
-    return base.getValor();
+    return base.getValor()* 0.85;
   }
 }

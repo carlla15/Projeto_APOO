@@ -1,4 +1,4 @@
-package com.academia.sistema.model;
+package br.edu.ifpe.academia.model;
 
 
 public class MensalidadeBase implements Mensalidade {

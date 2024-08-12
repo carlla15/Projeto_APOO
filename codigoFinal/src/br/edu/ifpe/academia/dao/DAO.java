@@ -1,4 +1,4 @@
-package com.academia.sistema.dao;
+package br.edu.ifpe.academia.dao;
 
 import java.util.List;
 

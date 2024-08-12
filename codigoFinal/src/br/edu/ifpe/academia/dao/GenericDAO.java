@@ -1,9 +1,9 @@
-package com.academia.sistema.dao;
-
-import com.academia.sistema.model.ClasseBase;
+package br.edu.ifpe.academia.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.edu.ifpe.academia.model.ClasseBase;
 
 public class GenericDAO<T extends ClasseBase> implements DAO<T> {
     private List<T> lista = new ArrayList<>();

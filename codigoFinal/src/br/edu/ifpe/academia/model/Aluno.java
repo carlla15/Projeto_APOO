@@ -1,4 +1,4 @@
-package com.academia.sistema.model;
+package br.edu.ifpe.academia.model;
 
 	public class Aluno extends ClasseBase implements Mensalidade {
 	    private String cpf;

@@ -1,6 +1,6 @@
-package com.academia.sistema.decorator;
+package br.edu.ifpe.academia.decorator;
 
-import com.academia.sistema.model.*;
+import br.edu.ifpe.academia.model.*;
 
 public class DescontoParceira implements Mensalidade {
 	   private Mensalidade base;
@@ -10,6 +10,6 @@ public class DescontoParceira implements Mensalidade {
 	   }
 	   @Override
 	   public double getValor() {
-	       return base.getValor();
+	       return base.getValor()* 0.8;
 	   }
 	}

@@ -1,4 +1,4 @@
-package com.academia.sistema.util;
+package br.edu.ifpe.academia.util;
 
 public class CPFValidatorController {
 

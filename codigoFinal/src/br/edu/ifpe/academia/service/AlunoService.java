@@ -1,10 +1,11 @@
-package com.academia.sistema.service;
+package br.edu.ifpe.academia.service;
 
 import java.util.List;
-import com.academia.sistema.model.Aluno;
-import com.academia.sistema.dao.DAO;
-import com.academia.sistema.dao.ConectorDAO;
-import com.academia.sistema.util.CPFValidatorController;
+
+import br.edu.ifpe.academia.dao.ConectorDAO;
+import br.edu.ifpe.academia.dao.DAO;
+import br.edu.ifpe.academia.model.Aluno;
+import br.edu.ifpe.academia.util.CPFValidatorController;
 
 public class AlunoService {
     private DAO<Aluno> alunoDAO = ConectorDAO.getInstancia().criarAlunoDAO();

@@ -1,4 +1,4 @@
-package com.academia.sistema.util;
+package br.edu.ifpe.academia.util;
 
 import br.com.caelum.stella.validation.CPFValidator;
 import br.com.caelum.stella.validation.InvalidStateException;

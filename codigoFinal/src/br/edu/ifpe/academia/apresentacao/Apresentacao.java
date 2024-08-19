@@ -73,7 +73,7 @@ public class Apresentacao {
                 System.out.println("Opção inválida.");
         }
     }
-
+    
     private void adicionarAluno() {
         System.out.print("CPF: ");
         String cpf = scanner.nextLine();
@@ -84,56 +84,48 @@ public class Apresentacao {
         System.out.print("Idade: ");
         int idade = obterNumero();
 
-       
+        
         Mensalidade mensalidadeBase = new MensalidadeBase(150.0);
 
-	        System.out.print("O aluno possui desconto familiar? (s/n): ");
-	        String respostaFamiliar = scanner.nextLine().trim();
-	        if (respostaFamiliar.equalsIgnoreCase("s")) {
-	            mensalidadeBase = new DescontoFamiliar(mensalidadeBase);
-	            System.out.println("Desconto familiar aplicado.");
-	        }
-	        System.out.println("Valor da mensalidade após desconto familiar: R$ " + mensalidadeBase.getValor());
-        
-        
-        
+        System.out.print("O aluno possui desconto familiar? (s/n): ");
+        String respostaFamiliar = scanner.next (); scanner.nextLine();
+        if (respostaFamiliar.equalsIgnoreCase("s")) {
+            mensalidadeBase = new DescontoFamiliar(mensalidadeBase);
+        }
+
         System.out.print("O aluno possui desconto acadêmico? (s/n): ");
-        String respostaAcademico = scanner.nextLine().trim();
+        String respostaAcademico = scanner.next (); scanner.nextLine().trim();
         if (respostaAcademico.equalsIgnoreCase("s")) {
             mensalidadeBase = new DescontoAcademico(mensalidadeBase);
-            System.out.println("Desconto acadêmico aplicado.");
         }
-        System.out.println("\n");
-        System.out.println("Valor da mensalidade após desconto acadêmico: R$ " + mensalidadeBase.getValor());
-        
-        System.out.print("O aluno possui desconto por parceria? (s/n): ");
-        String respostaParceira = scanner.nextLine().trim();
-        if (respostaParceira.equalsIgnoreCase("s")) {
-            mensalidadeBase = new                                          DescontoParceira(mensalidadeBase);
-            System.out.println("Desconto por parceria aplicado.");
-        }
-       
 
-      
-        System.out.println("Valor final da mensalidade: R$ " + mensalidadeBase.getValor());
-      
+        System.out.print("O aluno possui desconto por parceria? (s/n): ");
+        String respostaParceira = scanner.next (); scanner.nextLine().trim();
+        if (respostaParceira.equalsIgnoreCase("s")) {
+            mensalidadeBase = new DescontoParceira(mensalidadeBase);
+        }
+
+
+        double valorFinal = mensalidadeBase.getValor();
+        System.out.println("Valor final da mensalidade: R$ " + valorFinal);
+
         Aluno aluno = new Aluno.Builder()
                 .cpf(cpf)
                 .nome(nome)
                 .endereco(endereco)
                 .idade(idade)
-                .mensalidade(mensalidadeBase.getValor())
+                .mensalidade(valorFinal)
                 .build();
 
         try {
             alunoService.adicionarAluno(aluno);
-            registrador.log("Aluno adicionado: " + nome + " com valor de mensalidade: " + mensalidadeBase.getValor());
+            registrador.log("Aluno adicionado: " + nome + " com valor de mensalidade: R$ " + valorFinal);
             System.out.println("Aluno adicionado com sucesso.");
         } catch (Exception e) {
+        	  registrador.log("Erro ao adicionar aluno: " + e.getMessage());
             System.out.println("Erro ao adicionar aluno: " + e.getMessage());
         }
     }
-
 
     private void buscarAluno() {
         System.out.print("CPF: ");
@@ -145,11 +137,13 @@ public class Apresentacao {
                 System.out.println("Nome: " + aluno.getNome());
                 System.out.println("Endereço: " + aluno.getEndereco());
                 System.out.println("Idade: " + aluno.getIdade());
+                System.out.println("Mensalidade: R$ "+ aluno.getValor());
                 registrador.log("Aluno buscado: " + aluno.getNome());
             } else {
                 System.out.println("Aluno não encontrado.");
             }
         } catch (Exception e) {
+        	 registrador.log("Erro ao buscar aluno: " + e.getMessage());
             System.out.println("Erro ao buscar aluno: " + e.getMessage());
         }
     }
@@ -181,6 +175,7 @@ public class Apresentacao {
                 System.out.println("Aluno não encontrado.");
             }
         } catch (Exception e) {
+        	registrador.log("Erro ao atualizar aluno: " + e.getMessage());
             System.out.println("Erro ao atualizar aluno: " + e.getMessage());
         }
     }
@@ -193,6 +188,7 @@ public class Apresentacao {
             registrador.log("Aluno removido: " + cpf);
             System.out.println("Aluno removido com sucesso.");
         } catch (Exception e) {
+        	 registrador.log("Erro ao remover aluno: " + e.getMessage());
             System.out.println("Erro ao remover aluno: " + e.getMessage());
         }
     }
@@ -210,10 +206,12 @@ public class Apresentacao {
                     System.out.println("Nome: " + aluno.getNome());
                     System.out.println("Endereço: " + aluno.getEndereco());
                     System.out.println("Idade: " + aluno.getIdade());
+                    System.out.println("Mensalidade: R$ "+ aluno.getValor());
                     System.out.println();
                 }
             }
         } catch (Exception e) {
+        	registrador.log("Erro ao listar alunos: " + e.getMessage());
             System.out.println("Erro ao listar alunos: " + e.getMessage());
         }
     }

@@ -3,6 +3,8 @@ package br.edu.ifpe.academia.apresentacao;
 import br.edu.ifpe.academia.model.Aluno;
 import br.edu.ifpe.academia.service.AlunoService;
 import br.edu.ifpe.academia.util.Registrador;
+import br.edu.ifpe.academia.decorator.*;
+import br.edu.ifpe.academia.model.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -82,21 +84,56 @@ public class Apresentacao {
         System.out.print("Idade: ");
         int idade = obterNumero();
 
+       
+        Mensalidade mensalidadeBase = new MensalidadeBase(150.0);
+
+	        System.out.print("O aluno possui desconto familiar? (s/n): ");
+	        String respostaFamiliar = scanner.nextLine().trim();
+	        if (respostaFamiliar.equalsIgnoreCase("s")) {
+	            mensalidadeBase = new DescontoFamiliar(mensalidadeBase);
+	            System.out.println("Desconto familiar aplicado.");
+	        }
+	        System.out.println("Valor da mensalidade após desconto familiar: R$ " + mensalidadeBase.getValor());
+        
+        
+        
+        System.out.print("O aluno possui desconto acadêmico? (s/n): ");
+        String respostaAcademico = scanner.nextLine().trim();
+        if (respostaAcademico.equalsIgnoreCase("s")) {
+            mensalidadeBase = new DescontoAcademico(mensalidadeBase);
+            System.out.println("Desconto acadêmico aplicado.");
+        }
+        System.out.println("\n");
+        System.out.println("Valor da mensalidade após desconto acadêmico: R$ " + mensalidadeBase.getValor());
+        
+        System.out.print("O aluno possui desconto por parceria? (s/n): ");
+        String respostaParceira = scanner.nextLine().trim();
+        if (respostaParceira.equalsIgnoreCase("s")) {
+            mensalidadeBase = new                                          DescontoParceira(mensalidadeBase);
+            System.out.println("Desconto por parceria aplicado.");
+        }
+       
+
+      
+        System.out.println("Valor final da mensalidade: R$ " + mensalidadeBase.getValor());
+      
         Aluno aluno = new Aluno.Builder()
                 .cpf(cpf)
                 .nome(nome)
                 .endereco(endereco)
                 .idade(idade)
+                .mensalidade(mensalidadeBase.getValor())
                 .build();
 
         try {
             alunoService.adicionarAluno(aluno);
-            registrador.log("Aluno adicionado: " + nome);
+            registrador.log("Aluno adicionado: " + nome + " com valor de mensalidade: " + mensalidadeBase.getValor());
             System.out.println("Aluno adicionado com sucesso.");
         } catch (Exception e) {
             System.out.println("Erro ao adicionar aluno: " + e.getMessage());
         }
     }
+
 
     private void buscarAluno() {
         System.out.print("CPF: ");

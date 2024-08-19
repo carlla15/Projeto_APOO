@@ -2,15 +2,13 @@ package br.edu.ifpe.academia.decorator;
 
 import br.edu.ifpe.academia.model.Mensalidade;
 
-public class DescontoFamiliar implements Mensalidade {
-    private Mensalidade base;
-
-    public DescontoFamiliar(Mensalidade base) {
-        this.base = base;
+public class DescontoFamiliar extends AlunoDecorator {
+    public DescontoFamiliar(Mensalidade mensalidade) {
+        super(mensalidade);
     }
 
     @Override
     public double getValor() {
-        return base.getValor() * 0.85;
+        return mensalidade.getValor() * 0.85; 
     }
 }

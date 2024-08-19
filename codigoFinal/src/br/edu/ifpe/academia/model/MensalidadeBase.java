@@ -2,10 +2,9 @@ package br.edu.ifpe.academia.model;
 
 
 public class MensalidadeBase implements Mensalidade {
-    private double valor;
+    private double valor =150.00;
 
-    public MensalidadeBase(double valor) {
-        this.valor = valor;
+    public MensalidadeBase() {
     }
 
     @Override

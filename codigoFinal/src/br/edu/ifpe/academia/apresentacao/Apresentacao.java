@@ -1,16 +1,19 @@
-package br.edu.ifpe.academia.apresentacao;
+package br.edu.ifpe.academia.presentation;
 
+import br.edu.ifpe.academia.facade.AcademiaFachada;
 import br.edu.ifpe.academia.model.Aluno;
-import br.edu.ifpe.academia.service.AlunoService;
-import br.edu.ifpe.academia.util.Registrador;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Apresentacao {
-    private AlunoService alunoService = new AlunoService();
-    private Registrador registrador = Registrador.getInstancia();
-    private Scanner scanner = new Scanner(System.in);
+    private AcademiaFachada fachada;
+    private Scanner scanner;
+
+    public Apresentacao() {
+        this.fachada = new AcademiaFachada();
+        this.scanner = new Scanner(System.in);
+    }
 
     public static void main(String[] args) {
         Apresentacao apresentacao = new Apresentacao();
@@ -82,109 +85,90 @@ public class Apresentacao {
         System.out.print("Idade: ");
         int idade = obterNumero();
 
-        Aluno aluno = new Aluno.Builder()
-                .cpf(cpf)
-                .nome(nome)
-                .endereco(endereco)
-                .idade(idade)
-                .build();
+        fachada.adicionarAluno(cpf, nome, endereco, idade);
 
-        try {
-            alunoService.adicionarAluno(aluno);
-            registrador.log("Aluno adicionado: " + nome);
-            System.out.println("Aluno adicionado com sucesso.");
-        } catch (Exception e) {
-            System.out.println("Erro ao adicionar aluno: " + e.getMessage());
+        System.out.print("O aluno tem desconto? (academico/familiar/parceria/nenhum): ");
+        String tipoDesconto = scanner.nextLine();
+
+        double mensalidadeFinal = 150; 
+
+        if (!tipoDesconto.equals("nenhum")) {
+            mensalidadeFinal = fachada.calcularMensalidadeComDesconto(cpf, tipoDesconto);
+        }
+
+        Aluno aluno = fachada.buscarAluno(cpf);
+        if (aluno != null) {
+            System.out.println("Informações do aluno:");
+            System.out.println("CPF: " + aluno.getCpf());
+            System.out.println("Nome: " + aluno.getNome());
+            System.out.println("Endereço: " + aluno.getEndereco());
+            System.out.println("Idade: " + aluno.getIdade());
+            System.out.println("Mensalidade final: R$ " + mensalidadeFinal);
+        } else {
+            System.out.println("Aluno não encontrado.");
         }
     }
 
     private void buscarAluno() {
         System.out.print("CPF: ");
         String cpf = scanner.nextLine();
-        try {
-            Aluno aluno = alunoService.buscarAluno(cpf);
-            if (aluno != null) {
-                System.out.println("Aluno encontrado:");
-                System.out.println("Nome: " + aluno.getNome());
-                System.out.println("Endereço: " + aluno.getEndereco());
-                System.out.println("Idade: " + aluno.getIdade());
-                registrador.log("Aluno buscado: " + aluno.getNome());
-            } else {
-                System.out.println("Aluno não encontrado.");
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao buscar aluno: " + e.getMessage());
+        Aluno aluno = fachada.buscarAluno(cpf);
+        if (aluno != null) {
+            System.out.println("Aluno encontrado:");
+            System.out.println("Nome: " + aluno.getNome());
+            System.out.println("Endereço: " + aluno.getEndereco());
+            System.out.println("Idade: " + aluno.getIdade());
+        } else {
+            System.out.println("Aluno não encontrado.");
         }
     }
 
     private void atualizarAluno() {
         System.out.print("CPF do aluno a ser atualizado: ");
         String cpf = scanner.nextLine();
-        try {
-            Aluno alunoExistente = alunoService.buscarAluno(cpf);
-            if (alunoExistente != null) {
-                System.out.print("Novo Nome: ");
-                String nome = scanner.nextLine();
-                System.out.print("Novo Endereço: ");
-                String endereco = scanner.nextLine();
-                System.out.print("Nova Idade: ");
-                int idade = obterNumero();
+        Aluno alunoExistente = fachada.buscarAluno(cpf);
+        if (alunoExistente != null) {
+            System.out.print("Novo Nome: ");
+            String nome = scanner.nextLine();
+            System.out.print("Novo Endereço: ");
+            String endereco = scanner.nextLine();
+            System.out.print("Nova Idade: ");
+            int idade = obterNumero();
 
-                Aluno aluno = new Aluno.Builder()
-                        .cpf(cpf)
-                        .nome(nome)
-                        .endereco(endereco)
-                        .idade(idade)
-                        .build();
-
-                alunoService.atualizarAluno(aluno);
-                registrador.log("Aluno atualizado: " + nome);
-                System.out.println("Aluno atualizado com sucesso.");
-            } else {
-                System.out.println("Aluno não encontrado.");
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao atualizar aluno: " + e.getMessage());
+            fachada.atualizarAluno(cpf, nome, endereco, idade);
+            System.out.println("Aluno atualizado com sucesso.");
+        } else {
+            System.out.println("Aluno não encontrado.");
         }
     }
 
     private void removerAluno() {
         System.out.print("CPF: ");
         String cpf = scanner.nextLine();
-        try {
-            alunoService.removerAluno(cpf);
-            registrador.log("Aluno removido: " + cpf);
-            System.out.println("Aluno removido com sucesso.");
-        } catch (Exception e) {
-            System.out.println("Erro ao remover aluno: " + e.getMessage());
-        }
+        fachada.removerAluno(cpf);
+        System.out.println("Aluno removido com sucesso.");
     }
 
     private void listarAlunos() {
-        try {
-            List<Aluno> alunos = alunoService.listarAlunos();
-            if (alunos.isEmpty()) {
-                System.out.println("Nenhum aluno cadastrado.");
-            } else {
-                System.out.println("Lista de Alunos:");
+        List<Aluno> alunos = fachada.listarAlunos();
+        if (alunos.isEmpty()) {
+            System.out.println("Nenhum aluno cadastrado.");
+        } else {
+            System.out.println("Lista de Alunos:");
+            for (Aluno aluno : alunos) {
+                System.out.println("CPF: " + aluno.getCpf());
+                System.out.println("Nome: " + aluno.getNome());
+                System.out.println("Endereço: " + aluno.getEndereco());
+                System.out.println("Idade: " + aluno.getIdade());
                 System.out.println();
-                for (Aluno aluno : alunos) {
-                    System.out.println("CPF: " + aluno.getCpf());
-                    System.out.println("Nome: " + aluno.getNome());
-                    System.out.println("Endereço: " + aluno.getEndereco());
-                    System.out.println("Idade: " + aluno.getIdade());
-                    System.out.println();
-                }
             }
-        } catch (Exception e) {
-            System.out.println("Erro ao listar alunos: " + e.getMessage());
         }
     }
 
     private int obterNumero() {
         while (!scanner.hasNextInt()) {
-            System.out.println("Idade inválida. Digite um número.");
-            scanner.next(); 
+            System.out.println("Número inválido. Digite um número.");
+            scanner.next();
         }
         return scanner.nextInt();
     }

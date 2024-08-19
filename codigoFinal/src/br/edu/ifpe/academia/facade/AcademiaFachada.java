@@ -15,7 +15,7 @@ public class AcademiaFachada {
         this.alunoService = new AlunoService();
     }
 
-    public void adicionarAluno(String cpf, String nome, String endereco, int idade) {
+    public void adicionarAluno(String cpf, String nome, String endereco, int idade, double valorFinal) {
         Aluno aluno = new Aluno.Builder()
                 .cpf(cpf)
                 .nome(nome)

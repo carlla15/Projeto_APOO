@@ -1,17 +1,17 @@
 package br.edu.ifpe.academia.decorator;
 
-import br.edu.ifpe.academia.model.Mensalidade;
+import br.edu.ifpe.academia.model.Aluno;
 
-public abstract class AlunoDecorator implements Mensalidade {
-    protected Mensalidade mensalidadeDecorada;
+public abstract class AlunoDecorator extends Aluno {
+    protected Aluno alunoDecorado;
 
-    public AlunoDecorator(Mensalidade mensalidadeDecorada) {
-        this.mensalidadeDecorada = mensalidadeDecorada;
+    public AlunoDecorator(Aluno alunoDecorado) {
+        super(alunoDecorado);
+        this.alunoDecorado = alunoDecorado;
     }
 
     @Override
     public double getValor() {
-        return mensalidadeDecorada.getValor();
+        return alunoDecorado.getValor();
     }
 }
-

@@ -47,28 +47,30 @@ public class AcademiaFachada {
         return alunoService.listarAlunos();
     }
 
-    public double calcularMensalidadeComDesconto(String cpf, String tipoDesconto) {
+    public double aplicarDescontoAcademico(String cpf) {
         Aluno aluno = alunoService.buscarAluno(cpf);
         if (aluno == null) {
             throw new IllegalArgumentException("Aluno não encontrado para o CPF: " + cpf);
         }
+        DescontoAcademico desconto = new DescontoAcademico(aluno);
+        return desconto.getValor();
+    }
 
-        Mensalidade mensalidade = new MensalidadeBase(150); // Valor base da mensalidade
-
-        switch (tipoDesconto) {
-            case "academico":
-                mensalidade = new DescontoAcademico(mensalidade);
-                break;
-            case "familiar":
-                mensalidade = new DescontoFamiliar(mensalidade);
-                break;
-            case "parceria":
-                mensalidade = new DescontoParceira(mensalidade);
-                break;
-            default:
-                throw new IllegalArgumentException("Tipo de desconto inválido.");
+    public double aplicarDescontoFamiliar(String cpf) {
+        Aluno aluno = alunoService.buscarAluno(cpf);
+        if (aluno == null) {
+            throw new IllegalArgumentException("Aluno não encontrado para o CPF: " + cpf);
         }
+        DescontoFamiliar desconto = new DescontoFamiliar(aluno);
+        return desconto.getValor();
+    }
 
-        return mensalidade.getValor();
+    public double aplicarDescontoParceria(String cpf) {
+        Aluno aluno = alunoService.buscarAluno(cpf);
+        if (aluno == null) {
+            throw new IllegalArgumentException("Aluno não encontrado para o CPF: " + cpf);
+        }
+        DescontoParceira desconto = new DescontoParceira(aluno);
+        return desconto.getValor();
     }
 }
